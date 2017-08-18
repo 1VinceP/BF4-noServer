@@ -1,0 +1,118 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.bodyBG {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient( to bottom right, #222241, orange );
+}
+
+/* .header {
+  background: url('./bf4_banner.jpg');
+  background-size: cover;
+  height: 150px;
+  color: white;
+} */
+
+.grayBG {
+  height: 98vh;
+  width: 98%;
+  background: lightgray;
+  border-radius: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.inputSection {
+  height: 55%;
+  width: 98%;
+  background: lightgray;
+  border-radius: 5%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.vs {
+  align-self: center;
+  font-size: 40px;
+  font-weight: 600;
+  color: #E39B16;
+  margin: 0 -10px;
+}
+
+
+.entryBox {
+  height: 200px;
+  width: 350px;
+  /* background: darkslategray; */
+  background:linear-gradient( to bottom right, darkslategray, silver, darkslategray ); 
+  box-shadow: 10px 10px 10px;
+  /* margin-top: 80px; */
+  border-radius: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.inputBox {
+  width: 80%;
+  height: 20px;
+  font-size: 18px;
+  color: white;
+  border: none;
+  border-bottom: solid 1px orange;
+  background: transparent;
+  padding-left: 3px;
+  outline: none;
+}
+
+.radios {
+  color: darkslategray;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-around;
+}
+
+.submitButton {
+  height: 30px;
+  width: 80%;
+  background: #E39200;
+  border-color: #222241;
+  color: #222241;
+  font-weight: 500;
+  font-size: 18px;
+  box-shadow: 5px 5px 10px;
+  outline: none;
+}
+
+::placeholder {
+  color: #BEB098;
+}
+
+.resultsSection {
+  width: 98%;
+  height: 50%;
+  margin-top: -150px;
+  /* background: red; */
+  display: flex;
+  justify-content: space-around;
+}
+
+.resultsBox {
+  height: 100%;
+  width: 40%;
+  background: rgba( 000, 000, 000, .3 );
+  border-radius: 5%;
+  padding: 10px;
+}
