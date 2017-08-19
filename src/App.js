@@ -14,9 +14,10 @@ class App extends Component {
       soldier2: '',
       platform1: '',
       platform2: '',
-      data1: [],
-      data2: [],
-      spm: []
+      data1: { extra: { spm: '',
+      accuracy: '' } },
+      data2: { extra: { spm: '',
+      accuracy: '' } }
     }
 
     this.getSoldier1 = this.getSoldier1.bind(this);
@@ -38,7 +39,7 @@ class App extends Component {
                   stats.extra = res.data.stats.extra
                   this.setState({
                     data1: stats,
-                    spm: res.data.stats.extra.spm
+                    // spm1: res.data.stats.extra.spm
                   })
                 } );
 }
@@ -50,7 +51,8 @@ getPlayerInfo2() {
                 .then( res => {
                   console.log( res.data.stats )
                   this.setState({
-                    data2: res.data.stats
+                    data2: res.data.stats,
+                    spm2: res.data.stats.extra.spm
                   })
                 } );
 }
@@ -94,6 +96,10 @@ onClick2() {
   }
 
   render() {
+
+    let dataOne = this.state.data1
+    let dataTwo = this.state.data2
+
     return (
       <div className="App">
         <header className='header'></header>
@@ -107,27 +113,26 @@ onClick2() {
               />
               <p className='vs'>VS</p>
               <EntryBox2 getSoldier2={ this.getSoldier2 }
-                        getPlatform2={ this.getPlatform2 }
-                        onClick2={ this.onClick2 }
+                         getPlatform2={ this.getPlatform2 }
+                         onClick2={ this.onClick2 }
               />
             </section>
 
             <section className='resultsSection'>
               <div className='resultsBox'>
                 <b><u>Player: { this.state.soldier1 }</u></b><br/>
-                Revives: { this.state.data1.revives }<br/>
-                Longest headshot: { this.state.data1.longestHeadshot }<br/>
-                Skill: { this.state.data1.deaths }<br/>
-                {/* SPM: { this.state.spm } */}
-                {/* Score/Minute: { JSON.stringify(this.state.data1.extra) } */}
-                Score/Minute: { this.state.data1.extra.spm }
+                Score/Minute: { Math.floor(dataOne.extra.spm) }<br/>
+                Revives: { Math.floor(dataOne.revives) }<br/>
+                Longest headshot: { Math.floor(dataOne.longestHeadshot) ? dataOne.longestHeadshot : '0' }<br/>
+                Skill: { Math.floor(dataOne.skill) }<br/>
+                Accuracy: { Math.round(dataOne.extra.accuracy * 100) / 100 }%
               </div>
               <div className='resultsBox'>
               <b><u>Player: { this.state.soldier2 }</u></b><br/>
+                Score/Minute: { Math.floor(dataTwo.extra.spm)}<br/>
                 Revives: { this.state.data2.revives }<br/>
-                Longest headshot: { this.state.data2.longestHeadshot }<br/>
-                Skill: { this.state.data2.deaths }<br/>
-                SPM: { this.state.spm }
+                Longest headshot: { this.state.data2.longestHeadshot ? this.state.data2.longestHeadshot : '0' }<br/>
+                Skill: { this.state.data2.deaths }
               </div>
             </section>
             
