@@ -122,17 +122,20 @@ onClick2() {
               <div className='resultsBox'>
                 <b><u>Player: { this.state.soldier1 }</u></b><br/>
                 Score/Minute: { Math.floor(dataOne.extra.spm) }<br/>
-                Revives: { Math.floor(dataOne.revives) }<br/>
+                Skill: { Math.floor(dataOne.skill ? dataOne.skill : '0') }<br/>
+                Revives: { Math.floor(dataOne.revives) ? dataOne.revives : '0' }<br/>
                 Longest headshot: { Math.floor(dataOne.longestHeadshot) ? dataOne.longestHeadshot : '0' }<br/>
-                Skill: { Math.floor(dataOne.skill) }<br/>
-                Accuracy: { Math.round(dataOne.extra.accuracy * 100) / 100 }%
+                Accuracy: { Math.round(dataOne.extra.accuracy * 100) / 100 }%<br/>
+                Dogtags Taken: { Math.round(dataOne.dogtagsTaken) ? dataOne.dogtagsTaken : '0'}
               </div>
               <div className='resultsBox'>
               <b><u>Player: { this.state.soldier2 }</u></b><br/>
                 Score/Minute: { Math.floor(dataTwo.extra.spm)}<br/>
-                Revives: { this.state.data2.revives }<br/>
-                Longest headshot: { this.state.data2.longestHeadshot ? this.state.data2.longestHeadshot : '0' }<br/>
-                Skill: { this.state.data2.deaths }
+                Skill: { Math.floor(dataTwo.skill) ? dataTwo.skill : '0' }<br/>
+                Revives: { Math.floor(dataTwo.revives) ? dataTwo.revives : '0' }<br/>
+                Longest headshot: { Math.floor(dataTwo.longestHeadshot) ? dataTwo.longestHeadshot : '0' }<br/>
+                Accuracy: { Math.round(dataTwo.extra.accuracy * 100) / 100 }%<br/>
+                Dogtags Taken: { Math.round(dataTwo.dogtagsTaken) ? dataTwo.dogtagsTaken : '0'}
               </div>
             </section>
             
