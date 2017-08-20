@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import EntryBox from './components/EntryBox'
 import EntryBox2 from './components/EntryBox2'
+import CompareDisplayBox from './components/CompareDisplayBox'
 import { displayPlayer1, displayPlayer2 } from './components/resultsFunctions'
 
 import './App.css';
@@ -27,6 +28,7 @@ class App extends Component {
                        support: '',
                        recon: '' } }
       }
+      compareDisplay: false
 
     this.getSoldier1 = this.getSoldier1.bind(this);
     this.getSoldier2 = this.getSoldier2.bind(this);
@@ -115,6 +117,17 @@ class App extends Component {
     })
   }
 
+  comparePlayers() {
+    if( Number(this.state.data1.extra.spm) > 0 && Number(this.state.data2.extra.spm) > 0 ) {
+      this.setState({
+        compareDisplay: !this.state.compareDisplay
+      })
+    }
+    else {
+      alert( 'Please enter two valid players' )
+    }
+  }
+
   render() {
 
     let dataOne = this.state.data1
@@ -131,7 +144,11 @@ class App extends Component {
                         getPlatform1={ this.getPlatform1 }
                         onClick1={ this.onClick1 }
               />
-              <p className='vs'>VS</p>
+
+              <button onClick={ e => this.comparePlayers() } className='compareButton'>
+                <p className='vs'>VS</p>
+              </button>
+
               <EntryBox2 getSoldier2={ this.getSoldier2 }
                          getPlatform2={ this.getPlatform2 }
                          onClick2={ this.onClick2 }
@@ -168,14 +185,24 @@ class App extends Component {
                 Support Score: { dataTwo.kits.support.score ? dataTwo.kits.support.score : '0' }<br/>
                 Recon Score: { dataTwo.kits.recon.score ? dataTwo.kits.recon.score : '0' }<br/> */}
                 { displayPlayer2( dataTwo ) }
+
+
+
               </div>
             </section>
             
           </section>
 
-          
+          <section></section>
+
+        { this.state.compareDisplay ? <CompareDisplayBox spm1={ this.state.data1.extra.spm }
+                                                         spm2={ this.state.data2.extra.spm }
+                                                         p1={ this.state.soldier1 }
+                                                         p2={ this.state.soldier2 } 
+                                                         /> : null }
 
         </section>
+
 
       </div>
     );
