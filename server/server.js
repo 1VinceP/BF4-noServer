@@ -26,6 +26,6 @@ let port = 9070;
 
 
 
-app.listen( port, () =>{
+app.listen( process.env.PORT || port, () =>{
     console.log(`listening on port ${port}`)
 } )

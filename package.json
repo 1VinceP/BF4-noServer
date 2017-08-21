@@ -1,6 +1,5 @@
 {
   "name": "bf4-no-server",
-  "proxy": "http://localhost:9070",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
