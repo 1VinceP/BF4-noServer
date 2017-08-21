@@ -28,7 +28,7 @@ class App extends Component {
                        support: '',
                        recon: '' } }
       }
-      compareDisplay: false
+      // compareDisplay: false
 
     this.getSoldier1 = this.getSoldier1.bind(this);
     this.getSoldier2 = this.getSoldier2.bind(this);
@@ -47,12 +47,15 @@ class App extends Component {
 
       return axios.get( `${apiURL}?plat=${this.state.platform1}&name=${this.state.soldier1}` )
                   .then( res => {
-                    console.log( res.data.stats )
                     let stats = res.data.stats
-                    stats.extra = res.data.stats.extra
+                    console.log( stats )
                     this.setState({
                       data1: stats
                     })
+                  
+                  } )
+                  .catch( function( error ) {
+                    alert('Player 1 not found')
                   } );
     }
 }
@@ -65,11 +68,15 @@ class App extends Component {
 
         return axios.get( `${apiURL}?plat=${this.state.platform2}&name=${this.state.soldier2}` )
                     .then( res => {
-                      console.log( res.data.stats )
+                      let stats = res.data.stats
+                      console.log( stats )
                       this.setState({
-                        data2: res.data.stats,
-                        spm2: res.data.stats.extra.spm
+                        data2: stats
                       })
+
+                    } )
+                    .catch( function( error ) {
+                      alert('Player 2 not found')
                     } );
     }
 }
@@ -158,36 +165,11 @@ class App extends Component {
             <section className='resultsSection'>
               <div className='resultsBox'>
                 <b><u>Player: { this.state.soldier1 }</u></b><br/>
-                {/* Rank: { dataOne.rank ? dataOne.rank : '0' }<br/>
-                Score/Minute: { Math.floor(dataOne.extra.spm) ? dataOne.extra.spm : '0' }<br/>
-                Skill: { Math.floor(dataOne.skill ? dataOne.skill : '0') }<br/>
-                Longest headshot: { Math.floor(dataOne.longestHeadshot) ? dataOne.longestHeadshot : '0' }<br/>
-                Accuracy: { Math.round(dataOne.extra.accuracy * 100) / 100 ? dataOne.extra.accuracy : '0' }%<br/>
-                Dogtags Taken: { Math.round(dataOne.dogtagsTaken) ? dataOne.dogtagsTaken : '0'}<br/>
-                <br/>
-                Assault Score: { dataOne.kits.assault.score ? dataOne.kits.assault.score : '0' }<br/>
-                Engineer Score: { dataOne.kits.engineer.score ? dataOne.kits.engineer.score : '0' }<br/>
-                Support Score: { dataOne.kits.support.score ? dataOne.kits.support.score : '0' }<br/>
-                Recon Score: { dataOne.kits.recon.score ? dataOne.kits.recon.score : '0' }<br/> */}
                 { displayPlayer1( dataOne ) }
               </div>
               <div className='resultsBox'>
-              <b><u>Player: { this.state.soldier2 }</u></b><br/>
-                {/* Rank: { dataTwo.rank ? dataTwo.rank : '0' }<br/>
-                Score/Minute: { Math.floor(dataTwo.extra.spm) ? dataTwo.extra.spm : '0'}<br/>
-                Skill: { Math.floor(dataTwo.skill) ? dataTwo.skill : '0' }<br/>
-                Longest headshot: { Math.floor(dataTwo.longestHeadshot) ? dataTwo.longestHeadshot : '0' }<br/>
-                Accuracy: { Math.round(dataTwo.extra.accuracy * 100) / 100 ? dataTwo.extra.accuracy : '0' }%<br/>
-                Dogtags Taken: { Math.round(dataTwo.dogtagsTaken) ? dataTwo.dogtagsTaken : '0'}<br/>
-                <br/>
-                Assault Score: { dataTwo.kits.assault.score ? dataTwo.kits.assault.score : '0' }<br/>
-                Engineer Score: { dataTwo.kits.engineer.score ? dataTwo.kits.engineer.score : '0' }<br/>
-                Support Score: { dataTwo.kits.support.score ? dataTwo.kits.support.score : '0' }<br/>
-                Recon Score: { dataTwo.kits.recon.score ? dataTwo.kits.recon.score : '0' }<br/> */}
+                <b><u>Player: { this.state.soldier2 }</u></b><br/>
                 { displayPlayer2( dataTwo ) }
-
-
-
               </div>
             </section>
             
